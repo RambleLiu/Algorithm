@@ -18,9 +18,10 @@ public class Main {
 //        sl.listInsert(i++,e);
 //        e = new ElemType("李四3",20);
 //        sl.listInsert(i++,e);
-        e = new ElemType("李四4",20);
-        for (int j = 0;j < 1000000;j++)
-        sl.listInsert(i++,e);
+        for (int j = 0;j < 10;j++) {
+            e = new ElemType("李四4", 20);
+            sl.listInsert(i++, e);
+        }
         e = new ElemType("王五",21);
         sl.listInsert(i++,e);
         e = new ElemType("刘备",1500);
@@ -58,7 +59,7 @@ public class Main {
 //        test.deleteX(sl,20);
 
         //第四题测试
-        test.deleteSt(sl,19,1600);
+        test.deleteStB(sl,19,1500);
 
         System.out.println("==================操作后的结果=================");
 

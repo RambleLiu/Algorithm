@@ -4,7 +4,10 @@ import com.sqlist.base.ElemType;
 import com.sqlist.base.SqList;
 
 public class Test {
-    //王道p18.1
+    /**
+     *     王道p18.1
+     *     题目：从顺序表中删除具有最小值的元素（假设唯一），并由函数返回被删除元素的值，空出的位置有最后一个元素填补，若顺序表为空则显示出错信息并退出运行。
+     */
     public ElemType deMinAge(SqList list){
         if (isEmpty(list)){
             System.out.println("错误！！！顺序表为空，不能删除");
@@ -25,11 +28,14 @@ public class Test {
         return result;
     }
 
-    //王道p18.2
-    public void reserve(SqList list){
+    /**
+     * 王道p18.2
+     * 题目：设计一个高效算法，将顺序表L的所有元素逆置，要求算法的空间复杂度为O(1)
+     */
+    public boolean reserve(SqList list){
         if (isEmpty(list)){
             System.out.println("错误！！！顺序表为空，不能删除");
-            return;
+            return false;
         }
         int front = 0;
         int rear = list.getLength()-1;
@@ -40,13 +46,16 @@ public class Test {
             data[rear--].paste(data[front]);
             data[front++].paste(tmp);
         }
+        return true;
     }
 
-    //王道p18.3
-    //删除顺序表中所有年龄为x的元素
-    public void deleteX(SqList list,int x){
+    /**
+     * 王道p18.3
+     * 题目：对长度为n的顺序表L，编写一个时间复杂度为O(n),空间复杂度为O(1)的算法，该算法删除线性表中所有值为x的数据元素。
+     */
+    public boolean deleteX(SqList list,int x){
         if (isEmpty(list)){
-            return;
+            return false;
         }
         ElemType[] data = list.getData();
         int k = 0,i = 0;
@@ -57,12 +66,14 @@ public class Test {
             }
         }
         list.setLength(list.getLength() - (i-k));
+        return true;
     }
 
     /**
      * 王道p18.4
-     * 删除(s,t)间的所有值(s<t)，list为按年龄有序的顺序表
-     * 本机测试删除100W条数据，耗时11ms
+     * 题目：从有序顺序表中删除其值在给定值s与t之间（要求s<t）的所有元素，如果s或t不合理或顺序表为空，则显示出错信息并退出运行
+     *
+     * 实验数据：本机测试删除100W条数据，耗时11ms
      */
     public boolean deleteSt(SqList list,int s,int t){
         long b = System.currentTimeMillis();
@@ -92,7 +103,7 @@ public class Test {
      * 王道p18.4 标准答案
      * 删除(s,t)间的所有值(s<t)，list为按年龄有序的顺序表
      * 该解法为王道标答，但由于跑了三次循环，其耗时远超deleteSt(Sqlist list,int s,int t)
-     * 本机测试删除100W条数据，耗时11ms
+     * 实验数据：本机测试删除100W条数据，耗时11ms
      *
      * 结论：该方法适用于写操作耗时远大于比较的场景，否则三遍for循环耗时过大
      */
@@ -119,6 +130,16 @@ public class Test {
         System.out.println("有序顺序表删除Pro耗时：" + (e-b) + "ms");
         return true;
     }
+
+
+    /**
+     * 王道p18.5
+     * 从顺序表中删除其值在给定值s与t之间（包含s和t，要求s<t）的所有元素，如果s或t不合理或顺序表为空，则显示出错信息冰退出运行
+     */
+    public boolean deleteStB(SqList list,int s,int t){
+        return deleteSt(list,s,t);
+    }
+
 
     public boolean isEmpty(SqList list){
         if (list == null || list.isEmpty()){
